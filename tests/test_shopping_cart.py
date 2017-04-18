@@ -1,16 +1,11 @@
 import unittest
 from app.shopping_cart import ShoppingCart
-from app.customer import Customer
 from app.item import LineItem
 
 
 class TestShoppingCart(unittest.TestCase):
     def setUp(self):
-        customer = Customer('Mukasa John')
-        self.cart = ShoppingCart(customer)
-
-    def test_shopping_cart_responds_to_customer_properties(self):
-        self.assertEqual(self.cart.customer.name, 'Mukasa John')
+        self.cart = ShoppingCart()
 
     def test_shopping_cart_adds_line_items(self):
         line_item = LineItem('Blueband', 3)
@@ -24,3 +19,5 @@ class TestShoppingCart(unittest.TestCase):
             self.cart.add_item(line_item)
         self.cart.remove_item(line_item_to_remove)
         self.assertTrue(self.cart.line_items[0] == LineItem('Toothpaste', 5))
+
+

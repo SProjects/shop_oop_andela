@@ -1,9 +1,5 @@
-from stock import Stock
-
-
 class ShoppingCart:
-    def __init__(self, customer):
-        self.customer = customer
+    def __init__(self):
         self.line_items = []
 
     def add_item(self, line_item):
@@ -12,9 +8,15 @@ class ShoppingCart:
     def remove_item(self, line_item):
         self.line_items.remove(line_item)
 
-    def total_cost(self):
+    def total_cost(self, shop):
         total = 0
         for line_item in self.line_items:
-            total += Stock().get_sub_total(line_item)
+            total += shop.stock.get_sub_total(line_item)
         return total
+
+    def __str__(self):
+        result = ''
+        for item in self.line_items:
+            result += '| {0}: {1} pieces | '.format(item.name, item.quantity)
+        return result
 
